@@ -10,7 +10,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 def api_dependencies():
     git_repository(
         name = "com_lyft_protoc_gen_validate",
-        remote = "https://github.com/lyft/protoc-gen-validate.git",
+        remote = "git@github.com:lyft/protoc-gen-validate.git",
         commit = PGV_GIT_SHA,
     )
     native.new_http_archive(
