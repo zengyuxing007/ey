@@ -1,0 +1,25 @@
+solution "ENVOY"
+
+	location "build"
+   	language "C++"
+ 	objdir "obj"
+
+	configurations {"Debug", "Release" }
+	configuration "Debug"
+		flags "Symbols"
+		defines {"DEBUG"}
+		targetdir "bin/Debug"
+
+	configuration "Release"
+		flags { "OptimizeSpeed", "FloatFast" }
+		targetdir "bin/Release"
+
+project "access_log"
+	kind "StaticLib"
+
+	buildoptions { "-std=c++0x", "-Wall" }
+
+ 	files { "source/common/access_log/**" }
+	excludes { "**.lua", "test/**.*" }
+	includedirs { ".", "./source","./include","thirdParty/abseil-cpp","/usr/include/glib-2.0", "/usr/lib64/glib-2.0/include/", "/usr/include/mysql", "/usr/local/include/hiredis" }
+    linkoptions {"-Wl,-E"}
